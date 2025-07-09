@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto&display=swap");
+/* Animación de entrada (fade + scale) */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animación de botón (pulse) */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(120deg, #0d0d0d, #2b2d42, #0a454d);
+
+  background-attachment: fixed;
+  background-size: cover;
+  color: #e0e0e0;
+}
+
+/* Contenedor principal */
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 0 40px 0;
+  position: relative;
+}
+
+/* Título principal */
+.title {
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+  font-size: 56px;
+  letter-spacing: 3px;
+  color: #00f0ff;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 0 20px rgba(0, 255, 255, 0.4);
+  animation: fadeInUp 1s ease both;
+}
+
+.subtitle {
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+  font-size: 20px;
+  color: #c7bcf8;
+  margin: 25px;
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  animation: fadeInUp 1s ease both;
+}
+
+/* Barra de búsqueda */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 40px 0;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: none;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.5);
+  transform: scale(1.03);
+  outline: none;
+}
+
+/* Grilla de películas */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  padding: 20px 0;
+}
+
+/* Paginación */
+.pagination button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background: none;
+  color: #c7bcf8;
+  font-family: "Oswald", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.6), 0 0 5px rgba(0, 240, 255, 0.3);
+}
+
+.pagination button:disabled {
+  background: #444;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+.skeleton-card {
+  background: #2b2b2b;
+  border-radius: 12px;
+  height: 350px;
+  width: 100%;
+  animation: pulseSkeleton 1.5s infinite ease-in-out;
+}
+
+.movies-grid.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animación FadeIn */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseSkeleton {
+  0% {
+    background-color: #2b2b2b;
+  }
+  50% {
+    background-color: #3a3a3a;
+  }
+  100% {
+    background-color: #2b2b2b;
+  }
+}
