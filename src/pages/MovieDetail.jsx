@@ -46,7 +46,7 @@ function MovieDetail() {
 </p>
 
           <div className="cast-grid">
-            {movie.credits?.cast?.slice(0, 6).map(actor => (
+            {movie.credits?.cast?.slice(0, 5).map(actor => (
               <div key={actor.id} className="cast-card">
                 <img
                   src={actor.profile_path

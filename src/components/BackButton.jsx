@@ -7,9 +7,9 @@ function BackButton({ onClick }) {
 
   const handleClick = () => {
     if (onClick) {
-      onClick();  // Limpiar búsqueda en Home
+      onClick();  // lo agruege para limpiar la búsqueda en Home
     } else if (location.pathname !== '/') {
-      navigate('/');  // Volver al Home si estoy en detalle
+      navigate('/');  
     }
   };
 

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto&display=swap");
-/* Animación de entrada (fade + scale) */
+
+/* Animación de entrada*/
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -12,7 +13,7 @@
   }
 }
 
-/* Animación de botón (pulse) */
+/* Animación de botón*/
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -30,7 +31,6 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
   background: linear-gradient(120deg, #0d0d0d, #2b2d42, #0a454d);
-
   background-attachment: fixed;
   background-size: cover;
   color: #e0e0e0;
@@ -45,7 +45,7 @@ body {
   position: relative;
 }
 
-/* Título principal */
+/* Título de la pagina*/
 .title {
   font-family: "Bebas Neue", sans-serif;
   text-align: center;
@@ -58,6 +58,7 @@ body {
   animation: fadeInUp 1s ease both;
 }
 
+/*Subtitulo de la pagina*/
 .subtitle {
   font-family: "Oswald", sans-serif;
   text-align: center;
@@ -68,7 +69,7 @@ body {
   animation: fadeInUp 1s ease both;
 }
 
-/* Barra de búsqueda */
+/* Barra de búsqueda*/
 .search-container {
   display: flex;
   justify-content: center;
@@ -95,7 +96,7 @@ body {
   outline: none;
 }
 
-/* Grilla de películas */
+/* Grid con las películas principales */
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -138,6 +139,7 @@ body {
   gap: 15px;
 }
 
+/*Esqueleto como muestra que esta cargando */
 .skeleton-card {
   background: #2b2b2b;
   border-radius: 12px;

@@ -70,7 +70,7 @@ const useMoviesApi = (initialEndpoint = "movie/popular", initialPage = 1) => {
     error,
     onPrevious,
     onNext,
-    fetchMovies,  // 👈 importante para el buscador
+    fetchMovies,
   };
 };
 

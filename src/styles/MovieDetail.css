@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto&display=swap");
+
 @keyframes slideUpFade {
   0% {
     opacity: 0;
@@ -9,58 +11,54 @@
   }
 }
 
-.detail-container {
-  animation: slideUpFade 0.7s ease forwards;
-}
-
-
 body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;  /* 🛑 Esto evita scroll lateral global */
+  font-family: "Roboto", sans-serif;
+  background: linear-gradient(120deg, #0d0d0d, #2b2d42, #0a454d);
+  color: #fff;
+  overflow-x: hidden;
 }
 
 .detail-container {
-  position: relative;
+  animation: slideUpFade 0.7s ease forwards;
   padding: 40px 20px;
-  color: #fff;
-  background-color: #121212;
   min-height: 100vh;
-  font-family: 'Arial', sans-serif;
-  overflow-x: hidden; /* 🛑 Evita scroll lateral en la página */
+  overflow-x: hidden;
 }
 
 .back-button {
   display: inline-block;
   margin-bottom: 20px;
-  color: #00f0ff;
+  color: #7bbfc4;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .back-button:hover {
-  color: #00c4d4;
+  transform: translateX(-5px);
+  color: #00f0ff;
 }
 
 .detail-content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* 💡 Centra en pantallas medianas */
+  justify-content: center;
   gap: 30px;
   background: #1c1c1c;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
-  animation: fadeIn 1s ease both;
   max-width: 1500px;
   margin: 0 auto;
-  justify-content: space-evenly;
 }
 
 .detail-poster {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
   object-fit: cover;
@@ -68,26 +66,26 @@ body {
 
 .detail-info {
   flex: 1;
-  min-width: 280px;
+  min-width: 300px;
   max-width: 700px;
 }
 
 .detail-info h1 {
-  font-size: 28px;
-  color: #00f0ff;
-  margin-bottom: 10px;
-  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 42px;
+  color: #7bbfc4;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  margin-bottom: 15px;
 }
 
 .detail-info p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
-  margin: 5px 0;
+  color: #ddd;
 }
 
 .movie-info {
-  font-size: 15px;
-  margin-bottom: 12px;
+  margin-top: 10px;
 }
 
 .movie-info strong {
@@ -95,9 +93,9 @@ body {
 }
 
 .movie-rating {
-  font-size: 18px;
   color: #ffd700;
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .overview {
@@ -114,23 +112,23 @@ body {
 }
 
 .cast-card {
-  text-align: center;
+  max-width: 100px;
+  margin: 0 auto;
   background: #222;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+  border-radius: 8px;
+  padding: 5px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cast-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
   box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
 }
 
 .cast-card img {
   width: 100%;
+  height: auto;
   border-radius: 8px;
-  margin-bottom: 5px;
 }
 
 .cast-card p {
@@ -140,20 +138,32 @@ body {
 }
 
 .cast-card small {
-  font-size: 11px;
-  color: #bbb;
+  font-size: 10px;
+  color: #aaa;
 }
 
 .trailer {
-  margin-top: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 30px auto 0;
+  flex-basis: 100%;
 }
 
 .trailer h3 {
-  color: #00f0ff;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 24px;
+  color: #7bbfc4;
   margin-bottom: 10px;
 }
 
-/* 📱 Mobile: una sola columna sin scroll */
+.trailer iframe {
+  width: 100%;
+  min-height: 315px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+/* Pantallas hasta 768px */
 @media (max-width: 768px) {
   .detail-content {
     flex-direction: column;
@@ -161,24 +171,62 @@ body {
   }
 
   .detail-poster {
-    max-width: 80%;
-  }
-
-  .detail-info {
-    text-align: center;
+    max-width: 85%;
   }
 
   .detail-info h1 {
-    font-size: 22px;
-  }
-
-  .movie-info p,
-  .overview,
-  .movie-rating {
-    font-size: 13px;
+    font-size: 28px;
   }
 
   .cast-grid {
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
+
+/* Pantallas medianas 1000px a 1238px */
+@media (min-width: 1000px) and (max-width: 1238px) {
+  .detail-content {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .detail-poster {
+    max-width: 500px;
+  }
+
+  .detail-info {
+    max-width: 500px;
+  }
+
+  .cast-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  }
+
+  .cast-card {
+    max-width: 90px;
+  }
+
+  .trailer {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .trailer iframe {
+    min-height: 300px;
+  }
+}
+
+/* Pantallas grandes */
+@media (min-width: 1240px) {
+  .detail-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .trailer {
+    flex-basis: 100%;
+    max-width: 1000px;
+    margin-top: 30px;
   }
 }

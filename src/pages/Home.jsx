@@ -16,7 +16,6 @@ function Home() {
   const searchInputRef = useRef(null);
   const apiKey = import.meta.env.VITE_API_KEY;
 
-  // Busqueda con retardo y control de loadingUI
   useEffect(() => {
     setLoadingUI(true);
 
@@ -28,7 +27,7 @@ function Home() {
 
     const timeout = setTimeout(() => {
       fetchMovies(url).then(() => {
-        setTimeout(() => setLoadingUI(false), 500);  // Mantener Skeleton visible mínimo 500ms
+        setTimeout(() => setLoadingUI(false), 400);
       });
       setIsSearching(search.trim() !== "");
       setCurrentPage(1);
