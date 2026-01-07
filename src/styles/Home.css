@@ -193,3 +193,10 @@ body {
   text-align: center;
   font-weight: 500;
 }
+
+.no-results {
+  margin: 2rem 0;
+  text-align: center;
+  color: #aaa;
+  font-size: 1.1rem;
+}

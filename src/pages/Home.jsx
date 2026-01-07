@@ -11,32 +11,23 @@ function Home() {
   const [search, setSearch] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loadingUI, setLoadingUI] = useState(true);
 
   const searchInputRef = useRef(null);
   const apiKey = import.meta.env.VITE_API_KEY;
 
-  useEffect(() => {
-    setLoadingUI(true);
+useEffect(() => {
+  const urlBase = "https://api.themoviedb.org/3";
 
-    const urlBase = `https://api.themoviedb.org/3`;
-    const url =
-      search.trim() === ""
-        ? `${urlBase}/movie/popular?api_key=${apiKey}&language=es-ES&page=1`
-        : `${urlBase}/search/movie?api_key=${apiKey}&language=es-ES&query=${encodeURIComponent(
-            search
-          )}`;
+  const url =
+    search.trim() === ""
+      ? `${urlBase}/movie/popular?api_key=${apiKey}&language=es-ES&page=1`
+      : `${urlBase}/search/movie?api_key=${apiKey}&language=es-ES&query=${encodeURIComponent(search)}`;
 
-    const timeout = setTimeout(() => {
-      fetchMovies(url).then(() => {
-        setTimeout(() => setLoadingUI(false), 400);
-      });
-      setIsSearching(search.trim() !== "");
-      setCurrentPage(1);
-    }, 400);
+  fetchMovies(url);
+  setIsSearching(search.trim() !== "");
+  setCurrentPage(1);
+}, [search]);
 
-    return () => clearTimeout(timeout);
-  }, [search]);
 
   const handleReset = () => {
     setSearch("");
@@ -67,7 +58,8 @@ function Home() {
       <p className="subtitle">¡Toda la info de tus películas favoritas!</p>
 
       <div className="search-container">
-        {error && !loadingUI && <p className="error-message">{error}</p>}
+        {error && !loading && (<p className="error-message">{error}</p>
+        )}
 
         <input
           type="text"
@@ -79,16 +71,26 @@ function Home() {
           autoFocus
         />
       </div>
+      {!loading && !error && isSearching && movies.length === 0 && (
+        <p className="no-results">
+          No se encontraron películas para tu búsqueda.
+        </p>
+      )}
 
-      <div className={`movies-grid ${loadingUI ? "fade-loading" : "fade-in"}`}>
-        {loadingUI
-          ? Array.from({ length: 12 }).map((_, index) => (
-              <div key={index} className="skeleton-card"></div>
-            ))
-          : movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      <div className={`movies-grid ${loading ? 'fade-loading' : 'fade-in'}`}>
+
+        {loading
+  ? Array.from({ length: 12 }).map((_, index) => (
+      <div key={index} className="skeleton-card"></div>
+    ))
+  : movies.map((movie) => (
+      <MovieCard key={movie.id} movie={movie} />
+    ))
+}
+
       </div>
 
-      {!isSearching && !loadingUI && (
+      {!isSearching && !loading && (
         <div className="pagination">
           <button onClick={handlePreviousPage} disabled={info.page === 1}>
             Anterior
