@@ -12,41 +12,48 @@ const useMoviesApi = (initialEndpoint = "movie/popular", initialPage = 1) => {
   const buildUrl = (endpoint, page) =>
     `${BASE_URL}/${endpoint}?api_key=${API_KEY}&language=es-ES&page=${page}`;
 
-  const fetchMovies = async (endpointOrUrl, page = 1) => {
-    setLoading(true);
-    setError(null);
+const fetchMovies = async (endpointOrUrl, page = 1) => {
+  setLoading(true);
+  setError(null);
 
-    const url = endpointOrUrl.startsWith('http')
-      ? endpointOrUrl
-      : buildUrl(endpointOrUrl, page);
+  const url = endpointOrUrl.startsWith("http")
+    ? endpointOrUrl
+    : buildUrl(endpointOrUrl, page);
 
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Error HTTP: ${response.status}`);
-      }
-      const data = await response.json();
-      setMovies(data.results);
-      setInfo({
-        page: data.page,
-        totalPages: data.total_pages,
-        totalResults: data.total_results,
-      });
-    } catch (error) {
-      console.error("Error al obtener películas:", error);
-      setError(error);
-      setMovies([]);
-      setInfo({});
-    } finally {
-      setLoading(false);
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Error HTTP: ${response.status}`);
     }
-  };
+
+    const data = await response.json();
+
+    setMovies(data.results);
+    setInfo({
+      page: data.page,
+      totalPages: data.total_pages,
+      totalResults: data.total_results,
+    });
+
+  } catch (err) {
+    console.error("Error al obtener películas:", err);
+
+    setError("No se pudieron cargar las películas. Intente nuevamente.");
+    setMovies([]);
+    setInfo({});
+
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   useEffect(() => {
     if (API_KEY) {
       fetchMovies(initialEndpoint, initialPage);
     } else {
-      setError(new Error("API Key no definida en las variables de entorno"));
+      setError("Error de configuracion. Intente más tarde.");
       setLoading(false);
     }
   }, [initialEndpoint, initialPage, API_KEY]);

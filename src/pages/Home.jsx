@@ -23,7 +23,9 @@ function Home() {
     const url =
       search.trim() === ""
         ? `${urlBase}/movie/popular?api_key=${apiKey}&language=es-ES&page=1`
-        : `${urlBase}/search/movie?api_key=${apiKey}&language=es-ES&query=${encodeURIComponent(search)}`;
+        : `${urlBase}/search/movie?api_key=${apiKey}&language=es-ES&query=${encodeURIComponent(
+            search
+          )}`;
 
     const timeout = setTimeout(() => {
       fetchMovies(url).then(() => {
@@ -55,7 +57,7 @@ function Home() {
     setCurrentPage((prev) => prev - 1);
   };
 
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p className="error-message">{error}</p>;
 
   return (
     <div className="container">
@@ -65,6 +67,8 @@ function Home() {
       <p className="subtitle">¡Toda la info de tus películas favoritas!</p>
 
       <div className="search-container">
+        {error && !loadingUI && <p className="error-message">{error}</p>}
+
         <input
           type="text"
           placeholder="Buscar películas..."
@@ -76,13 +80,13 @@ function Home() {
         />
       </div>
 
-<div className={`movies-grid ${loadingUI ? 'fade-loading' : 'fade-in'}`}>
-  {loadingUI
-    ? Array.from({ length: 12 }).map((_, index) => (
-        <div key={index} className="skeleton-card"></div>
-      ))
-    : movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-</div>
+      <div className={`movies-grid ${loadingUI ? "fade-loading" : "fade-in"}`}>
+        {loadingUI
+          ? Array.from({ length: 12 }).map((_, index) => (
+              <div key={index} className="skeleton-card"></div>
+            ))
+          : movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      </div>
 
       {!isSearching && !loadingUI && (
         <div className="pagination">
@@ -102,4 +106,3 @@ function Home() {
 }
 
 export default Home;
-

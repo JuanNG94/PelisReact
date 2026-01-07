@@ -186,3 +186,10 @@ body {
     background-color: #2b2b2b;
   }
 }
+
+.error-message {
+  margin: 1rem 0;
+  color: #ff4d4f;
+  text-align: center;
+  font-weight: 500;
+}
