@@ -8,8 +8,8 @@ El proyecto fue creado como práctica de frontend, enfocándose en el manejo de 
 
 ## Demo
 
-https://pelis-react-o04nqzj2l-juanng94s-projects.vercel.app/
 
+https://pelis-react-steel.vercel.app/
 ---
 
 ## Tecnologías utilizadas
